@@ -39,12 +39,24 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Role',
+    timestamps: true
   });
 
   // Add method to check if role has specific permission
-  Role.prototype.hasPermission = async function(permissionName) {
-    const permissions = await this.getPermissions();
-    return permissions.some(permission => permission.name === permissionName);
+  Role.prototype.hasPermission = async function(action) {
+    const permission = await this.getRolePermission();
+    switch(action) {
+      case 'create':
+        return permission.can_create;
+      case 'read':
+        return permission.can_read;
+      case 'update':
+        return permission.can_update;
+      case 'delete':
+        return permission.can_delete;
+      default:
+        return false;
+    }
   };
 
   return Role;

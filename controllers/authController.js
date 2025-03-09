@@ -41,7 +41,8 @@ exports.login = async (req, res) => {
 
     // Generate JWT token
     const token = generateToken(user);
-
+    res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+    
     // Record the login in LoggedInUsers table
     await LoggedInUser.create({
       userId: user.id,

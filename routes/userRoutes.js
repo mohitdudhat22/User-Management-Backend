@@ -6,6 +6,7 @@ const { upload, handleUploadError } = require("../middleware/upload");
 const { protect } = require("../middleware/auth");
 const { createUserSchema, updateUserSchema } = require("../validations/userValidation");
 const paginate = require("../middleware/paginate");
+const { attachRole, detachRole, getUserRoles } = require("../controllers/roleController");
 
 const router = express.Router();
 
@@ -36,5 +37,9 @@ router.put("/:id",
 router.delete("/:id", deleteUser);
 
 router.post("/delete-multiple", deleteMultipleUsers);
+
+router.post("/roles/attach", attachRole);
+router.post("/roles/detach", detachRole);
+router.get("/roles", getUserRoles);
 
 module.exports = router; 

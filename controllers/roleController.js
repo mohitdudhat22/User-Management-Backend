@@ -1,11 +1,19 @@
-const { User, Role } = require("../models");
+const { User, Role, Permission } = require("../models");
 
 // Role CRUD operations
 exports.createRole = async (req, res) => {
   try {
     const { name, description } = req.body;
     const role = await Role.create({ name, description });
-    res.status(201).json(role);
+        //add new entrey to permissions table
+        const permission = await Permission.create({
+          role_id: role.id,
+          can_create: false, 
+          can_read: false,
+          can_update: false,
+          can_delete: false
+        });
+    res.status(201).json({role, permission});
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -13,6 +21,7 @@ exports.createRole = async (req, res) => {
 
 exports.getAllRoles = async (req, res) => {
   try {
+
     const roles = await Role.findAll({
       include: [{
         model: User,

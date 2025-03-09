@@ -4,10 +4,30 @@ const { Strategy, ExtractJwt } = require("passport-jwt");
 const { User } = require("../models");
 const checkBlacklistedToken = require("./checkBlacklistedToken");
 
+// Custom JWT extractor that checks both cookies and Authorization header
+const customJwtExtractor = (req) => {
+  // First check if token exists in cookies
+  let token = null;
+  if (req && req.cookies && req.cookies.token) {
+    token = req.cookies.token;
+  }
+  
+  // If not in cookies, check Authorization header
+  if (!token && req.headers.authorization) {
+    const authHeader = req.headers.authorization;
+    if (authHeader.startsWith('Bearer ')) {
+      token = authHeader.substring(7);
+    }
+  }
+  
+  return token;
+};
+
 const opts = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  jwtFromRequest: customJwtExtractor,
   secretOrKey: process.env.JWT_SECRET,
 };
+
 passport.use(
   new Strategy(opts, async (jwt_payload, done) => {
     try {
@@ -35,7 +55,7 @@ exports.protect = [
 ];
 
 exports.generateToken = (user) => {
-  console.log('User  for Token Generation:', user);
+  console.log('User for Token Generation:', user);
   return jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
     expiresIn: "7d",
   });

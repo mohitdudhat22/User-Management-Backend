@@ -15,7 +15,19 @@ module.exports = (sequelize, DataTypes) => {
     status: {
       type: DataTypes.ENUM('active', 'inactive'),
       defaultValue: 'active'
-    }
+    },
+    customerType: {
+      type: DataTypes.ENUM('individual', 'business'),
+      defaultValue: 'individual'
+    },
+    notes: DataTypes.TEXT
   }, {});
+  
+  Customer.associate = function(models) {
+    // Define associations here if needed
+    // For example, Customer could belong to a User
+    // Customer.belongsTo(models.User);
+  };
+  
   return Customer;
 }; 

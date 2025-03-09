@@ -2,6 +2,7 @@ require("dotenv").config();
 const cors = require('cors');
 console.log(process.env.JWT_SECRET);
 const express = require("express");
+const cookieParser = require('cookie-parser');
 const authRoutes = require("./routes/authRoutes");
 const locationRoutes = require("./routes/locationRoutes");
 const roleRoutes = require("./routes/roleRoutes");
@@ -15,7 +16,7 @@ require('./events/eventHandlers');
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/location", locationRoutes);
 app.use("/api/roles", roleRoutes);

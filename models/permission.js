@@ -1,30 +1,47 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  const Permission = sequelize.define('Permission', {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    description: DataTypes.STRING,
-    module: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    action: {
-      type: DataTypes.ENUM('create', 'read', 'update', 'delete'),
-      allowNull: false
+  class Permission extends Model {
+    static associate(models) {
+      // No direct associations needed as this is a through table
     }
+  }
+
+  Permission.init({
+    role_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Roles',
+        key: 'id'
+      }
+    },
+    can_create: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    can_read: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    can_update: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    can_delete: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    }
+  }, {
+    sequelize,
+    modelName: 'Permission',
+    tableName: 'permissions',
+    timestamps: false
   });
 
-  Permission.associate = (models) => {
-    Permission.belongsToMany(models.Role, {
-      through: 'RolePermissions',
-      as: 'roles',
-      foreignKey: 'permissionId'
-    });
-  };
-
   return Permission;
-}; 
+};
