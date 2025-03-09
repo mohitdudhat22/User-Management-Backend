@@ -35,6 +35,7 @@ exports.createSupplier = async (req, res) => {
 // Get all suppliers with filters and pagination
 exports.getAllSuppliers = async (req, res) => {
   try {
+    console.log("getAllSuppliers");
     const { limit, offset } = req.pagination || { limit: 10, offset: 0 };
     const { search, status, sortBy = 'name', sortOrder = 'asc' } = req.query;
     

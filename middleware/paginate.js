@@ -4,11 +4,7 @@ const paginate = (defaultLimit = 10) => {
     const limit = parseInt(req.query.limit, 10) || defaultLimit;
     const offset = (page - 1) * limit;
 
-    req.pagination = {
-      limit,
-      offset,
-      page
-    };
+    req.pagination = { limit, offset, page };
     next();
   };
 };

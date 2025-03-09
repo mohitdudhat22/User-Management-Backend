@@ -17,11 +17,11 @@ const router = express.Router();
 router.use(protect);
 
 // CRUD routes with permission checks
-router.post("/", checkPermission('customer.create'), createCustomer);
-router.get("/", checkPermission('customer.read'), paginate, getAllCustomers);
-router.get("/:id", checkPermission('customer.read'), getCustomerById);
-router.put("/:id", checkPermission('customer.update'), updateCustomer);
-router.delete("/:id", checkPermission('customer.delete'), deleteCustomer);
-router.delete("/", checkPermission('customer.delete'), deleteMultipleCustomers);
+router.post("/", checkPermission('can_create'), createCustomer);
+router.get("/", checkPermission('can_read'), paginate(), getAllCustomers);
+router.get("/:id", checkPermission('can_read'), getCustomerById);
+router.put("/:id", checkPermission('can_update'), updateCustomer);
+router.delete("/:id", checkPermission('can_delete'), deleteCustomer);
+router.delete("/", checkPermission('can_delete'), deleteMultipleCustomers);
 
 module.exports = router; 

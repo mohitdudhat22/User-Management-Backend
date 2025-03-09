@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Customers', {
+    await queryInterface.createTable('Suppliers', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -26,13 +26,6 @@ module.exports = {
         type: Sequelize.ENUM('active', 'inactive'),
         defaultValue: 'active'
       },
-      customerType: {
-        type: Sequelize.ENUM('individual', 'business'),
-        defaultValue: 'individual'
-      },
-      notes: {
-        type: Sequelize.TEXT
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -44,6 +37,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Customers');
+    await queryInterface.dropTable('Suppliers');
   }
-};
+}; 

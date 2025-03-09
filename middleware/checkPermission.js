@@ -1,4 +1,4 @@
-const { Permission } = require("../models");
+const { Permission, Role } = require("../models");
 
 /**
  * Middleware to check if user has the required permission
@@ -12,24 +12,25 @@ const checkPermission = (action) => {
       
       // Get user roles
       const userRoles = await user.getRoles();
-      console.log(userRoles,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
       
-      // Check if user has admin role (ID: 2)
-      const isAdmin = userRoles.some(role => role.id === 2);
+      const isAdmin = user.role === "admin";
       if (isAdmin) {
+        console.log("------------")
         return next(); // Admin has all permissions
       }
-
+      const role = await Role.findOne({
+        where: { id: userRoles.role }
+      });
+      console.log(role.id,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
       // For non-admin users, check specific permissions
-      for (const role of userRoles) {
         const permission = await Permission.findOne({
           where: { role_id: role.id }
         });
-        
+        console.log(permission,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         if (permission && permission[action]) {
           return next();
         }
-      }
+      
 
       res.status(403).json({ 
         message: 'Permission denied',
