@@ -1,0 +1,194 @@
+{
+  "info": {
+    "name": "User CRUD Operations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "firstname",
+              "value": "John",
+              "type": "text"
+            },
+            {
+              "key": "lastname",
+              "value": "Doe",
+              "type": "text"
+            },
+            {
+              "key": "email",
+              "value": "john.doe@example.com",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "password123",
+              "type": "text"
+            },
+            {
+              "key": "contact",
+              "value": "+1234567890",
+              "type": "text"
+            },
+            {
+              "key": "postcode",
+              "value": "12345",
+              "type": "text"
+            },
+            {
+              "key": "gender",
+              "value": "male",
+              "type": "text"
+            },
+            {
+              "key": "hobbies",
+              "value": "[\"reading\", \"gaming\"]",
+              "type": "text"
+            },
+            {
+              "key": "roles",
+              "value": "[1]",
+              "type": "text"
+            },
+            {
+              "key": "files",
+              "type": "file",
+              "src": []
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/api/users"
+      }
+    },
+    {
+      "name": "Get All Users",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/users?page=1&limit=10",
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update User",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "firstname",
+              "value": "John Updated",
+              "type": "text"
+            },
+            {
+              "key": "lastname",
+              "value": "Doe Updated",
+              "type": "text"
+            },
+            {
+              "key": "contact",
+              "value": "+1987654321",
+              "type": "text"
+            },
+            {
+              "key": "files",
+              "type": "file",
+              "src": []
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/api/users/{{userId}}"
+      }
+    },
+    {
+      "name": "Delete User",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": "{{baseUrl}}/api/users/{{userId}}"
+      }
+    },
+    {
+      "name": "Upload Files",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "files",
+              "type": "file",
+              "src": []
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/api/users/upload"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "token",
+      "value": "your_jwt_token_here"
+    },
+    {
+      "key": "userId",
+      "value": "user_id_here"
+    }
+  ]
+} 
