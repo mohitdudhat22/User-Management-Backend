@@ -23,18 +23,18 @@ A robust backend system for managing users, roles, permissions, customers, and s
 ## Installation
 
 1. Clone the repository:
-\`\`\`bash
+```bash
 git clone <repository-url>
 cd user-management-backend
-\`\`\`
+```
 
 2. Install dependencies:
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
-3. Create a \`.env\` file in the root directory with the following variables:
-\`\`\`env
+3. Create a `.env` file in the root directory with the following variables:
+```env
 PORT=5000
 JWT_SECRET=your_jwt_secret_key
 NODE_ENV=development
@@ -42,18 +42,18 @@ DB_HOST=localhost
 DB_USER=root
 DB_PASS=your_password
 DB_NAME=database_development
-\`\`\`
+```
 
 4. Set up the database:
-\`\`\`bash
+```bash
 npx sequelize-cli db:create
 npx sequelize-cli db:migrate
 npx sequelize-cli db:seed:all
-\`\`\`
+```
 
 ## Project Structure
 
-\`\`\`
+```
 ├── config/
 │   └── config.json         # Database configuration
 ├── controllers/           # Request handlers
@@ -65,40 +65,40 @@ npx sequelize-cli db:seed:all
 ├── uploads/         # File upload directory
 ├── exports/        # Export files directory
 └── server.js       # Application entry point
-\`\`\`
+```
 
 ## API Endpoints
 
 ### Authentication
-- \`POST /api/auth/register\` - Register new user
-- \`POST /api/auth/login\` - User login
-- \`POST /api/auth/logout\` - User logout
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - User login
+- `POST /api/auth/logout` - User logout
 
 ### Users
-- \`GET /api/users\` - Get all users
-- \`GET /api/users/:id\` - Get user by ID
-- \`POST /api/users\` - Create new user
-- \`PUT /api/users/:id\` - Update user
-- \`DELETE /api/users/:id\` - Delete user
+- `GET /api/users` - Get all users
+- `GET /api/users/:id` - Get user by ID
+- `POST /api/users` - Create new user
+- `PUT /api/users/:id` - Update user
+- `DELETE /api/users/:id` - Delete user
 
 ### Roles
-- \`GET /api/roles\` - Get all roles
-- \`GET /api/roles/:id\` - Get role by ID
-- \`POST /api/roles\` - Create new role
-- \`PUT /api/roles/:id\` - Update role
-- \`DELETE /api/roles/:id\` - Delete role
+- `GET /api/roles` - Get all roles
+- `GET /api/roles/:id` - Get role by ID
+- `POST /api/roles` - Create new role
+- `PUT /api/roles/:id` - Update role
+- `DELETE /api/roles/:id` - Delete role
 
 ### Permissions
-- \`GET /api/permissions\` - Get all permissions
-- \`POST /api/permissions\` - Create new permission
-- \`PUT /api/permissions/:id\` - Update permission
+- `GET /api/permissions` - Get all permissions
+- `POST /api/permissions` - Create new permission
+- `PUT /api/permissions/:id` - Update permission
 
 ### Customers & Suppliers
-- \`GET /api/customers\` - Get all customers
-- \`POST /api/customers\` - Create new customer
-- \`PUT /api/customers/:id\` - Update customer
-- \`DELETE /api/customers/:id\` - Delete customer
-- Similar endpoints for suppliers under \`/api/suppliers\`
+- `GET /api/customers` - Get all customers
+- `POST /api/customers` - Create new customer
+- `PUT /api/customers/:id` - Update customer
+- `DELETE /api/customers/:id` - Delete customer
+- Similar endpoints for suppliers under `/api/suppliers`
 
 ## Security Features
 
@@ -126,27 +126,27 @@ Supports multiple file uploads with:
 ## Development
 
 Start the development server:
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 For production:
-\`\`\`bash
+```bash
 npm start
-\`\`\`
+```
 
 ## Testing
 
-\`\`\`bash
+```bash
 npm test
-\`\`\`
+```
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch (\`git checkout -b feature/AmazingFeature\`)
-3. Commit your changes (\`git commit -m 'Add some AmazingFeature'\`)
-4. Push to the branch (\`git push origin feature/AmazingFeature\`)
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
 ## License
