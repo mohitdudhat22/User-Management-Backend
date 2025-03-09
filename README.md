@@ -127,28 +127,5 @@ Supports multiple file uploads with:
 
 Start the development server:
 ```bash
-npm run dev
+ node server.js
 ```
-
-For production:
-```bash
-npm start
-```
-
-## Testing
-
-```bash
-npm test
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details; 
