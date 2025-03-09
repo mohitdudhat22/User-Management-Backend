@@ -12,6 +12,7 @@ const cleanupBlacklist = require('./jobs/cleanupBlacklist');
 const cleanupSessions = require('./jobs/cleanupSessions');
 const customerRoutes = require('./routes/customerRoutes');
 const supplierRoutes = require('./routes/supplierRoutes');
+const permissionRoutes = require('./routes/permissionRoutes');
 require('./events/eventHandlers');
 const app = express();
 app.use(express.json());
@@ -24,6 +25,7 @@ app.use('/api/export', exportRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/customers', customerRoutes);
 app.use('/api/suppliers', supplierRoutes);
+app.use('/api/permissions', permissionRoutes);
 // Start cleanup job
 cleanupBlacklist();
 
